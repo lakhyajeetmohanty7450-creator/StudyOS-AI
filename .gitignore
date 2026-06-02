@@ -1,0 +1,17 @@
+# Security
+.env
+
+# Build files and heavy assets
+dist/
+build/
+StudyOS_AI_Windows/
+*.exe
+*.zip
+*.spec
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Local Database
+studyflow_data.json
