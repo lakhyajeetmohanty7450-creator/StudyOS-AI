@@ -670,7 +670,7 @@ def main(page: ft.Page):
             ft.Container(height=20),
             timer_controls,
             preset_row,
-            ft.Container(height=80) # <-- Foolproof invisible spacer prevents overlap!
+            ft.Container(height=80) 
         ], alignment=ft.MainAxisAlignment.CENTER, horizontal_alignment=ft.CrossAxisAlignment.CENTER,
           scroll=ft.ScrollMode.AUTO),
         alignment=ft.Alignment(0, 0), expand=True
@@ -1048,25 +1048,6 @@ def main(page: ft.Page):
         save_data(app_state)
         render_kanban()
 
-    
-    app_state["kanban_filter"] = "All"
-
-
-
-
-    def set_kanban_filter(e, filter_val):
-        app_state["kanban_filter"] = filter_val
-        render_kanban()
-
-    filter_row = ft.Row([
-        ft.Text("Filter Column view:", color=TEXT_SECONDARY, size=12),
-        ft.TextButton("All", on_click=lambda e: set_kanban_filter(e, "All")),
-        ft.TextButton("📐 Math", on_click=lambda e: set_kanban_filter(e, "Math")),
-        ft.TextButton("💻 Python", on_click=lambda e: set_kanban_filter(e, "Python")),
-        ft.TextButton("📚 Study", on_click=lambda e: set_kanban_filter(e, "Study")),
-        ft.TextButton("📝 General", on_click=lambda e: set_kanban_filter(e, "General")),
-    ], spacing=10, alignment=ft.MainAxisAlignment.START)
-
 
 
 
@@ -1074,15 +1055,8 @@ def main(page: ft.Page):
         for lst in [todo_list, in_progress_list, done_list]: 
             lst.controls.clear()
             
-        current_filter = app_state.get("kanban_filter", "All")
-
-
-
-
         def create_draggable(task_text, col_name, idx):
-            if current_filter != "All" and not task_text.startswith(f"[{current_filter}]"):
-                return None
-
+            
             card_ui = ft.Container(
                 content=ft.Row([
                     ft.Text(task_text, color="white", size=13, expand=True), 
@@ -1157,15 +1131,11 @@ def main(page: ft.Page):
             ft.Container(height=5),
             ft.Row([kanban_input, ft.IconButton(ft.Icons.ADD_CIRCLE, icon_color=ACCENT, on_click=add_kanban)]),
             ft.Divider(color="white24"), 
-            filter_row,
             ft.Container(height=5),
             kanban_columns
         ], expand=True)
     )
 
-    
-
-    
     def set_view_range(e, range_name):
         app_state["view_range"] = range_name
         save_data(app_state)
@@ -1367,12 +1337,12 @@ def main(page: ft.Page):
 
     page.add(main_stack)
     
-    # Initialize UI
+    
     render_tasks()
     render_kanban()
     update_records_ui()
     
-    # Start tasks
+    
     page.run_task(clock_loop)    
     page.run_task(quote_rotator) 
     page.run_task(poll_leaderboard) 
