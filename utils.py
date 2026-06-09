@@ -7,7 +7,7 @@ TIME_CATEGORIZE_PATTERN = re.compile(r'(\d{1,2}):?(\d{2})?\s*(AM|PM)', re.IGNORE
 def get_emoji_and_subject(task_string):
     t = task_string.lower()
     if any(word in t for word in ["math", "jee", "coordinate", "parabola", "algebra", "calculus"]): return "📐", "Math"
-    if any(word in t for word in ["python", "code", "sql", "leetcode", "dsa", "c++", "java"]): return "💻", "Python"
+    if any(word in t for word in ["python", "code", "sql", "leetcode", "dsa", "c++", "java"]): return "💻", "progrmming"
     if any(word in t for word in ["physics", "chem", "study", "mock", "paper", "revision", "read"]): return "📚", "Study"
     
     if any(word in t for word in ["history", "polity", "geography", "upsc", "current affairs"]): return "🌍", "General Studies"

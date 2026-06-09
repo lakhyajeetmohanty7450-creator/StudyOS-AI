@@ -30,7 +30,7 @@ class TasksPanel:
         )
 
         self.container = ft.Container(
-            width=400, height=650,
+            width=600, height=650,
             bgcolor=GLASS_BG, blur=ft.Blur(32, 32, ft.BlurTileMode.MIRROR), 
             border=GLASS_BORDER, shadow=GLASS_SHADOW, border_radius=CARD_RADIUS, padding=24, 
             left=30, bottom=100, visible=False,
